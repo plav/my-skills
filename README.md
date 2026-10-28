@@ -1,25 +1,15 @@
 # my-skills
 
-A Claude Code plugin marketplace holding every skill from my claude.ai account: 268 skills in 21 plugins. Each plugin is a folder under `plugins/`; each skill is a folder with a `SKILL.md`. Delete or add folders freely.
+A Claude Code plugin marketplace: 240 skills in 20 plugins. Each plugin is a folder under `plugins/`; each skill is a folder with a `SKILL.md`. Delete or add folders freely.
 
 ## Install
 
-From GitHub (private repo recommended):
-
 ```
-claude plugin marketplace add <you>/my-skills
+claude plugin marketplace add plav/my-skills
 claude plugin install my-engineering-skills@my-skills
 ```
 
-From a local folder:
-
-```
-claude plugin marketplace add /path/to/my-skills
-```
-
-Install only the plugins you want: `claude plugin install <plugin>@my-skills`. Restart Claude Code after installing.
-
-For a private repo, set a `GITHUB_TOKEN` (fine-grained, read access to this repo only) before starting Claude Code, or clone and updates can fail silently.
+Install only the plugins you want: `claude plugin install <plugin>@my-skills`. Restart Claude Code after installing. For this private repo, set a `GITHUB_TOKEN` (fine-grained, read access to this repo only) before starting Claude Code, or updates can fail silently.
 
 ## Update
 
@@ -39,43 +29,35 @@ claude plugin update <plugin>@my-skills
 - **Add a plugin:** create `plugins/<name>/.claude-plugin/plugin.json` and add an entry to `.claude-plugin/marketplace.json`.
 - **Remove a plugin:** delete its folder and its entry in `marketplace.json`.
 
+## Duplicates removed (v1.1.0)
+
+No two skills share a name now. Removed, so the stronger copy fires:
+
+- **`matt-pocock-skills`:** 24 skills that `supermatt-skills` also has. The supermatt copies were longer and newer in every case. Matt's unique skills stay.
+- **`code-review-plugin`:** whole plugin removed. Its one skill had a one-line description that fired on anything PR-shaped.
+- **`engineering-workflows/code-review`:** removed; `supermatt-skills/code-review` covers standards, spec and adversarial review.
+- **`engineering-team-roles/commit`:** removed; it had no frontmatter. `supermatt-skills/commit` stays (manual only).
+- **`supermatt-skills/handoff`:** removed; `workflow-studio/handoff` stays (pairs with `done`).
+
+All removals are in git history; restore with `git checkout <commit>^ -- <path>`.
+
+## Same job, different names
+
+These no longer clash by name but still overlap in purpose. Install one per row if skills fight to fire:
+
+| Job | Skills |
+|---|---|
+| Code review | supermatt `code-review`, superpowers `requesting-code-review`, my `code-review-guide`, workflow-studio `code-quality` |
+| Debugging | superpowers `systematic-debugging`, supermatt `diagnosing-bugs`, engineering-workflows `debug`, backend-discipline `debugging-discipline`, workflow-studio `debugging-and-error-recovery`, my `observability-and-debugging-guide` |
+| TDD | superpowers `test-driven-development`, supermatt `tdd`, workflow-studio `tdd-skill` |
+| Security | my `security-guide`, backend-discipline `security-discipline`, workflow-studio `security-and-hardening`, engineering-team-roles `security-engineer`, security-scanner `claude-security`, extra `differential-review`/`sharp-edges` |
+
 ## Before you share
 
-- **Licenses.** Only `my-engineering-skills` is yours. Many packs had no license file in what was copied, and their source names below are guessed from contents. Keep this repo private, or install those packs from their real upstream marketplaces instead.
-- **Work content.** `my-engineering-skills` describes how your team works. Check company policy before pushing to a personal GitHub. `ticket-kickoff` contains a real Jira project key as an example.
-- **Tool-dependent skills.** `codeql`, `semgrep`, `webapp-testing`, `mcp-server-builder`, the `datadog` plugin and some others need local tools, MCP servers or network access.
-
-## Duplicates (same skill name in more than one plugin)
-
-Many packs overlap. Same-named skills in different plugins do not clash technically (they are namespaced as `plugin:skill`), but they can compete to fire. Consider installing only one plugin per overlap.
-
-| Skill | Plugins |
-|---|---|
-| `code-review` | matt-pocock-skills, supermatt-skills, engineering-workflows, code-review-plugin |
-| `codebase-design` | matt-pocock-skills, supermatt-skills |
-| `commit` | supermatt-skills, engineering-team-roles |
-| `diagnosing-bugs` | matt-pocock-skills, supermatt-skills |
-| `domain-modeling` | matt-pocock-skills, supermatt-skills |
-| `grill-me` | matt-pocock-skills, supermatt-skills |
-| `grill-with-docs` | matt-pocock-skills, supermatt-skills |
-| `grilling` | matt-pocock-skills, supermatt-skills |
-| `handoff` | matt-pocock-skills, supermatt-skills, workflow-studio |
-| `implement` | matt-pocock-skills, supermatt-skills |
-| `implement-spec` | matt-pocock-skills, supermatt-skills |
-| `pr` | matt-pocock-skills, supermatt-skills |
-| `prototype` | matt-pocock-skills, supermatt-skills |
-| `research` | matt-pocock-skills, supermatt-skills |
-| `resolving-merge-conflicts` | matt-pocock-skills, supermatt-skills |
-| `retro` | matt-pocock-skills, supermatt-skills |
-| `tdd` | matt-pocock-skills, supermatt-skills |
-| `teach` | matt-pocock-skills, supermatt-skills |
-| `to-questionnaire` | matt-pocock-skills, supermatt-skills |
-| `to-spec` | matt-pocock-skills, supermatt-skills |
-| `to-tickets` | matt-pocock-skills, supermatt-skills |
-| `triage` | matt-pocock-skills, supermatt-skills |
-| `wait-what` | matt-pocock-skills, supermatt-skills |
-| `wayfinder` | matt-pocock-skills, supermatt-skills |
-| `writing-for-agents` | matt-pocock-skills, supermatt-skills |
+- **Licenses.** Only `my-engineering-skills` is yours. Many packs had no license file, and their source names are guessed from contents. Keep this repo private.
+- **Work content.** `my-engineering-skills` describes how your team works. `ticket-kickoff` contains a real Jira project key as an example.
+- **Tool-dependent skills.** `codeql`, `semgrep`, `webapp-testing`, `mcp-server-builder`, the `datadog` plugin and others need local tools, MCP servers or network access.
+- **Manual-only skills** are marked _(manual)_ below: they never fire on their own; call them with `/name`.
 
 ## Plugins at a glance
 
@@ -84,17 +66,16 @@ Many packs overlap. Same-named skills in different plugins do not clash technica
 | [`my-engineering-skills`](#my-engineering-skills) | 39 | Your own skills | Yours |
 | [`extra-skills`](#extra-skills) | 10 | Trail of Bits, wshobson/agents, Karpathy, Anthropic | License file kept in each skill folder |
 | [`superpowers`](#superpowers) | 15 | obra/superpowers (guessed from contents) | Unknown, not bundled. |
-| [`matt-pocock-skills`](#matt-pocock-skills) | 38 | Matt Pocock skills (guessed) | Unknown, not bundled. |
-| [`supermatt-skills`](#supermatt-skills) | 39 | fork/variant of Matt Pocock skills (guessed) | Unknown, not bundled. |
-| [`engineering-team-roles`](#engineering-team-roles) | 15 | 10x-team role pack (unknown author) | Unknown, not bundled. |
+| [`matt-pocock-skills`](#matt-pocock-skills) | 14 | Matt Pocock skills (guessed) | Unknown, not bundled. |
+| [`supermatt-skills`](#supermatt-skills) | 38 | fork/variant of Matt Pocock skills (guessed) | Unknown, not bundled. |
+| [`engineering-team-roles`](#engineering-team-roles) | 14 | 10x-team role pack (unknown author) | Unknown, not bundled. |
 | [`backend-discipline`](#backend-discipline) | 18 | senior backend discipline pack (unknown author) | Unknown, not bundled. |
 | [`sanity`](#sanity) | 11 | Sanity (guessed from contents) | Unknown, not bundled. |
-| [`engineering-workflows`](#engineering-workflows) | 10 | engineering workflow pack (unknown author) | Unknown, not bundled. |
+| [`engineering-workflows`](#engineering-workflows) | 9 | engineering workflow pack (unknown author) | Unknown, not bundled. |
 | [`data-analysis`](#data-analysis) | 10 | data analysis pack (unknown author) | Unknown, not bundled. |
 | [`design`](#design) | 7 | design pack (unknown author) | Unknown, not bundled. |
 | [`workflow-studio`](#workflow-studio) | 36 | full-stack workflow pack, Vue/Tabler flavoured (unknown author) | Unknown, not bundled. |
 | [`productivity`](#productivity) | 4 | productivity pack (unknown author) | Unknown, not bundled. |
-| [`code-review-plugin`](#code-review-plugin) | 1 | code review plugin (unknown author) | Unknown, not bundled. |
 | [`security-scanner`](#security-scanner) | 1 | Claude Security menu plugin (unknown author) | Unknown, not bundled. |
 | [`cv-builder`](#cv-builder) | 4 | CV Builder plugin (unknown author) | Unknown, not bundled. |
 | [`ai-mentor`](#ai-mentor) | 1 | AI workflow mentor plugin (unknown author) | Unknown, not bundled. |
@@ -198,44 +179,20 @@ Source: Matt Pocock skills (guessed). License: Unknown, not bundled.
 
 | Skill | What it does |
 |---|---|
-| `ask-matt` | Ask which skill or flow fits your situation. A router over the skills in this repo. |
-| `claude-handoff` | Hand the current conversation off to a fresh background agent that picks up the work immediately. |
-| `code-review` | Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X". |
-| `codebase-design` | Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary. |
-| `diagnosing-bugs` | Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow. |
-| `domain-modeling` | Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR. |
+| `ask-matt` _(manual)_ | Ask which skill or flow fits your situation. A router over the skills in this repo. |
+| `claude-handoff` _(manual)_ | Hand the current conversation off to a fresh background agent that picks up the work immediately. |
 | `git-guardrails-claude-code` | Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code. |
-| `grill-me` | A relentless interview to sharpen a plan or design. |
-| `grill-with-docs` | A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go. |
-| `grilling` | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
-| `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
-| `implement` | Implement a piece of work based on a spec or set of tickets. |
-| `implement-spec` | Implement a specification in code. |
-| `improve-codebase-architecture` | Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick. |
-| `loop-me` | Grill me about specs for the workflows I want to build, within this workspace. |
+| `improve-codebase-architecture` _(manual)_ | Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick. |
+| `loop-me` _(manual)_ | Grill me about specs for the workflows I want to build, within this workspace. |
 | `migrate-to-shoehorn` | Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data. |
-| `pr` | Use when writing a PR body. |
-| `prototype` | Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like. |
-| `research` | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. |
-| `resolving-merge-conflicts` | Use when you need to resolve an in-progress git merge/rebase conflict. |
-| `retro` | Conduct a retrospective on a coding session. |
 | `scaffold-exercises` | Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section. |
-| `setup-matt-pocock-skills` | Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills. |
+| `setup-matt-pocock-skills` _(manual)_ | Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills. |
 | `setup-pre-commit` | Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing. |
-| `setup-ts-deep-modules` | Wire dependency-cruiser into a TypeScript repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files. User-invoked. |
-| `tdd` | Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests. |
-| `teach` | Teach the user a new skill or concept, within this workspace. |
-| `to-questionnaire` | Turn a decision you can't fully answer into a questionnaire for someone else to fill in. |
-| `to-spec` | Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed. |
-| `to-tickets` | Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker). |
-| `triage` | Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs. |
-| `wait-what` | Stop. That last message did not land: re-pitch it. |
-| `wayfinder` | Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear. |
+| `setup-ts-deep-modules` _(manual)_ | Wire dependency-cruiser into a TypeScript repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files. User-invoked. |
 | `wizard` | Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover. Don't invoke this for steps the agent can perform itself. |
-| `writing-beats` | Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it. |
-| `writing-for-agents` | Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md. |
-| `writing-fragments` | Writing, explore: mine raw fragments, no structure yet. |
-| `writing-shape` | Writing, exploit: shape raw material into an article, paragraph by paragraph. |
+| `writing-beats` _(manual)_ | Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it. |
+| `writing-fragments` _(manual)_ | Writing, explore: mine raw fragments, no structure yet. |
+| `writing-shape` _(manual)_ | Writing, exploit: shape raw material into an article, paragraph by paragraph. |
 
 ### supermatt-skills
 
@@ -243,44 +200,43 @@ Source: fork/variant of Matt Pocock skills (guessed). License: Unknown, not bund
 
 | Skill | What it does |
 |---|---|
-| `ask-supermatt` | Ask which skill or flow fits your situation. A router over the skills in this repo. |
+| `ask-supermatt` _(manual)_ | Ask which skill or flow fits your situation. A router over the skills in this repo. |
 | `code-review` | Review the changes since a fixed point (commit, branch, tag, or merge-base) along three axes: Standards (does the code follow this repo's documented coding standards?), Spec (does the code match what the originating issue/spec asked for?), and Adversarial (how does the change fail in production?). Runs each axis in an independent host reader and applies the repository external-peer policy. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X". |
 | `codebase-design` | Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, deepen a chosen module, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary. |
-| `commit` | Commit all changes on the current branch, main included. |
+| `commit` _(manual)_ | Commit all changes on the current branch, main included. |
 | `dependency-vetting` | Verify a package or tool is authentic before installing, adding, upgrading, or recommending it. Use whenever a task would add a dependency to a project, suggest a CLI tool, or pull a package from npm, PyPI, crates.io, Go modules, RubyGems, Homebrew, or any other registry. Also use when a registry page, install command, or installed artifact looks inconsistent with the project that supposedly publishes it. |
 | `diagnosing-bugs` | Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow. |
 | `domain-modeling` | Build and sharpen a project's domain model. Use when discussing codebase terminology, resolving a vague or overloaded word, stress-testing how domain concepts relate, writing or editing a GLOSSARY.md, or recording or editing an ADR. |
-| `fix-findings` | Apply every finding from the most recent review, audit, verification, or check in this session. |
-| `grill-me` | A relentless interview to sharpen a plan or design. |
-| `grill-with-docs` | A relentless interview to sharpen a plan or design, which also creates docs (ADRs and glossary) as we go. |
+| `fix-findings` _(manual)_ | Apply every finding from the most recent review, audit, verification, or check in this session. |
+| `grill-me` _(manual)_ | A relentless interview to sharpen a plan or design. |
+| `grill-with-docs` _(manual)_ | A relentless interview to sharpen a plan or design, which also creates docs (ADRs and glossary) as we go. |
 | `grilling` | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, says "grill me", or asks to poke holes in, challenge, or be interviewed about a plan or design, even without the word "grill". |
-| `handoff` | Write the current conversation into a portable handoff document for another agent to pick up. |
-| `ideate` | Generate grounded ideas for what to build next, critique every one, and rank the survivors in a Markdown file. |
-| `implement` | Implement a piece of work based on a spec, tickets, or triaged issues. |
-| `implement-spec` | Implement a whole spec through parallel ticket worktrees on one integration branch. |
-| `improve-architecture` | Assess a codebase's architecture, stop when it is healthy, otherwise find deepening opportunities, design the chosen one, and hand a plan to /implement. |
-| `improve-file-structure` | Assess project file organization and prepare a behavior-preserving migration plan for /implement when reorganization is justified. |
-| `improve-tests` | Cut a test suite to the tests that catch real bugs and its run time to the minimum: measure first, delete or demote low-value tests, fix slow setup, and prove every cut keeps the checks that matter. |
-| `jury` | Put a question or decision to a jury of 3 or 5 subagents: blind independent votes, one anonymized review round, and one committed verdict with the vote, the dissent, and the first action. |
-| `orchestrate` | Work through GitHub issues or local Markdown tickets unattended in parallel lanes, with workers in Herdr panes and git worktrees. |
+| `ideate` _(manual)_ | Generate grounded ideas for what to build next, critique every one, and rank the survivors in a Markdown file. |
+| `implement` _(manual)_ | Implement a piece of work based on a spec, tickets, or triaged issues. |
+| `implement-spec` _(manual)_ | Implement a whole spec through parallel ticket worktrees on one integration branch. |
+| `improve-architecture` _(manual)_ | Assess a codebase's architecture, stop when it is healthy, otherwise find deepening opportunities, design the chosen one, and hand a plan to /implement. |
+| `improve-file-structure` _(manual)_ | Assess project file organization and prepare a behavior-preserving migration plan for /implement when reorganization is justified. |
+| `improve-tests` _(manual)_ | Cut a test suite to the tests that catch real bugs and its run time to the minimum: measure first, delete or demote low-value tests, fix slow setup, and prove every cut keeps the checks that matter. |
+| `jury` _(manual)_ | Put a question or decision to a jury of 3 or 5 subagents: blind independent votes, one anonymized review round, and one committed verdict with the vote, the dissent, and the first action. |
+| `orchestrate` _(manual)_ | Work through GitHub issues or local Markdown tickets unattended in parallel lanes, with workers in Herdr panes and git worktrees. |
 | `pr` | The shape of a pull request body: a summary diagram, before/after evidence, and merge danger. Use when opening a PR, writing or rewriting a PR description, or when another flow needs a PR body. |
 | `prototype` | Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like. |
 | `qa` | QA a change in the running program, the way its user meets it: drive a CLI or terminal UI through tmux, a web app through a browser, and check every requested behavior against what you observe. Use after implementing a change and before code review, or when the user asks for a QA pass, a smoke test, or a click-through of a change, or asks whether it actually works. |
-| `refactor` | Refactor code at method, file, or project scope. Assesses first and stops when the code is already clean, routes architecture problems elsewhere, and gates edits on test coverage. Language-agnostic. |
+| `refactor` _(manual)_ | Refactor code at method, file, or project scope. Assesses first and stops when the code is already clean, routes architecture problems elsewhere, and gates edits on test coverage. Language-agnostic. |
 | `research` | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. |
 | `resolving-merge-conflicts` | Resolves an in-progress git merge or rebase conflict by tracing why each side changed, reconciling every conflicted hunk, running the project's checks, and finishing the merge or rebase. Use when a merge, rebase, or pull stops on conflicts, when files contain conflict markers, or when the user asks to fix or resolve merge conflicts. |
-| `retro` | Conduct a retrospective on a coding session. |
-| `setup-supermatt-skills` | Configure this repo for the engineering skills: set up its issue tracker, triage labels, domain doc layout, and external peer policy. Run once before first use of the other engineering skills. |
-| `ship-pr` | Commit, push, open a pull request, repair CI within bounded attempts, then squash merge and verify post-merge workflows. |
+| `retro` _(manual)_ | Conduct a retrospective on a coding session. |
+| `setup-supermatt-skills` _(manual)_ | Configure this repo for the engineering skills: set up its issue tracker, triage labels, domain doc layout, and external peer policy. Run once before first use of the other engineering skills. |
+| `ship-pr` _(manual)_ | Commit, push, open a pull request, repair CI within bounded attempts, then squash merge and verify post-merge workflows. |
 | `tdd` | Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests. |
-| `teach` | Teach the user a new skill or concept, within this workspace. |
-| `to-questionnaire` | Turn a decision you can't fully answer into a questionnaire for someone else to fill in. |
-| `to-spec` | Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed. |
-| `to-tickets` | Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker). |
-| `triage` | Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs. |
-| `wait-what` | Stop. That last message did not land: re-pitch it. |
-| `wayfinder` | Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear. |
-| `what-would-you-do` | Explain the question you just asked and recommend an answer, with the case for and against each option. |
+| `teach` _(manual)_ | Teach the user a new skill or concept, within this workspace. |
+| `to-questionnaire` _(manual)_ | Turn a decision you can't fully answer into a questionnaire for someone else to fill in. |
+| `to-spec` _(manual)_ | Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed. |
+| `to-tickets` _(manual)_ | Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker). |
+| `triage` _(manual)_ | Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs. |
+| `wait-what` _(manual)_ | Stop. That last message did not land: re-pitch it. |
+| `wayfinder` _(manual)_ | Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear. |
+| `what-would-you-do` _(manual)_ | Explain the question you just asked and recommend an answer, with the case for and against each option. |
 | `writing-for-agents` | Writing documents for agents. Use when creating or editing skills, modifying AGENTS.md or CLAUDE.md, or writing any doc an agent reaches by a pointer. |
 
 ### engineering-team-roles
@@ -290,7 +246,6 @@ Source: 10x-team role pack (unknown author). License: Unknown, not bundled.
 | Skill | What it does |
 |---|---|
 | `10x-team` | You MUST use this when building projects end-to-end. Orchestrates all 12 team roles — automatically switches between CTO, architect, PM, engineers, SRE, security, DBA, QA, and EM based on the current phase of work. Starts with brainstorming before any implementation. |
-| `commit` | _No description in SKILL.md._ |
 | `cto` | You MUST use this for strategic technology decisions - build vs buy, architecture direction, resource allocation, technical vision, risk assessment. Evaluates decisions at the intersection of business and technology. |
 | `dba` | You MUST use this for database decisions - schema design, query optimization, migration planning, indexing strategy, data modeling, and database performance issues. |
 | `devops-engineer` | You MUST use this for infrastructure and deployment decisions - CI/CD pipelines, containerization, IaC, deployment strategies, environment management, and build automation. |
@@ -355,7 +310,6 @@ Source: engineering workflow pack (unknown author). License: Unknown, not bundle
 | Skill | What it does |
 |---|---|
 | `architecture` | Create or evaluate an architecture decision record (ADR). Use when choosing between technologies (e.g., Kafka vs SQS), documenting a design decision with trade-offs and consequences, reviewing a system design proposal, or designing a new component from requirements and constraints. |
-| `code-review` | Review code changes for security, performance, and correctness. Trigger with a PR URL or diff, "review this before I merge", "is this code safe?", or when checking a change for N+1 queries, injection risks, missing edge cases, or error handling gaps. |
 | `debug` | Structured debugging session — reproduce, isolate, diagnose, and fix. Trigger with an error message or stack trace, "this works in staging but not prod", "something broke after the deploy", or when behavior diverges from expected and the cause isn't obvious. |
 | `deploy-checklist` | Pre-deployment verification checklist. Use when about to ship a release, deploying a change with database migrations or feature flags, verifying CI status and approvals before going to production, or documenting rollback triggers ahead of time. |
 | `documentation` | Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README", "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture docs, or operational runbooks. |
@@ -412,7 +366,7 @@ Source: full-stack workflow pack, Vue/Tabler flavoured (unknown author). License
 | `design-assets` | Visual assets: logos, icons, illustrations, hero and OG images, empty-state art, favicons, raster-to-vector conversion. Use whenever a task needs one. Recraft is called first and hand-authoring is the fallback; covers the art-direction brief and integration. Visual judgment is design-guide. |
 | `design-guide` | Visual and UX judgment: color, typography, spacing, hierarchy, themes. Use when choosing colors or status/badge colors, theming (white-label included), making a screen "look better" or more polished, or reviewing a UI's visual quality. Decides how it looks; structure is frontend, Tabler specifics are tabler-ui, content placement is information-architecture. |
 | `done` | Session close-out with no resume prompt. Use on /done, or when wrapping up a session where nothing remains to resume or the continuation prompt already exists (a standup queue's next item). Runs the handoff close-out minus the resume-prompt step. Need a fresh resume prompt? Use handoff instead, never both. In a parent session it closes the child sessions first. |
-| `explain` | Re-explain the last message in plain words, using the project's own vocabulary. |
+| `explain` _(manual)_ | Re-explain the last message in plain words, using the project's own vocabulary. |
 | `find-skills` | Discover and install agent skills. Use only when the user explicitly asks for a skill ("find or install a skill for X", "is there a skill that..."), never for an ordinary how-do-I question. |
 | `first-customers` | Find and reach a product's first customers honestly: demand signals, local-business prospect lists, outreach drafts a human sends. Use when asking "who would buy this" or "how do I get my first users or clients". Offer and positioning are marketing; wording is plain-language. |
 | `frontend` | Frontend structure and behavior: components, state, a typed service layer, lists, tables and filters, forms, modals, loading/empty/error states, routing, SSR, web performance. Use when building or refactoring UI or adding any screen. Vue 3 + Tabler today, framework-agnostic in approach. Tabler specifics are tabler-ui; visual judgment is design-guide; content placement is information-architecture. |
@@ -450,21 +404,13 @@ Source: productivity pack (unknown author). License: Unknown, not bundled.
 | `task-management` | Simple task management using a shared TASKS.md file. Reference this when the user asks about their tasks, wants to add/complete tasks, or needs help tracking commitments. |
 | `update` | Sync tasks and refresh memory from your current activity. Use when pulling new assignments from your project tracker into TASKS.md, triaging stale or overdue tasks, filling memory gaps for unknown people or projects, or running a comprehensive scan to catch todos buried in chat and email. |
 
-### code-review-plugin
-
-Source: code review plugin (unknown author). License: Unknown, not bundled.
-
-| Skill | What it does |
-|---|---|
-| `code-review` | Code review a pull request |
-
 ### security-scanner
 
 Source: Claude Security menu plugin (unknown author). License: Unknown, not bundled.
 
 | Skill | What it does |
 |---|---|
-| `claude-security` | The Claude Security menu — pick a job: scan the codebase (the whole repository or a scoped part of it), scan changes (this branch's or a pull request's diff, or one commit), or suggest patches (findings turned into targeted patch files, each verified by a panel of agents, that you apply when you choose). |
+| `claude-security` _(manual)_ | The Claude Security menu — pick a job: scan the codebase (the whole repository or a scoped part of it), scan changes (this branch's or a pull request's diff, or one commit), or suggest patches (findings turned into targeted patch files, each verified by a panel of agents, that you apply when you choose). |
 
 ### cv-builder
 

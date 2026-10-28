@@ -70,11 +70,6 @@
       "description": "Skills from productivity pack (unknown author)"
     },
     {
-      "name": "code-review-plugin",
-      "source": "./plugins/code-review-plugin",
-      "description": "Skills from code review plugin (unknown author)"
-    },
-    {
       "name": "security-scanner",
       "source": "./plugins/security-scanner",
       "description": "Skills from Claude Security menu plugin (unknown author)"
