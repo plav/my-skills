@@ -1,0 +1,113 @@
+{
+  "name": "my-skills",
+  "owner": {
+    "name": "me"
+  },
+  "plugins": [
+    {
+      "name": "my-engineering-skills",
+      "source": "./plugins/my-engineering-skills",
+      "description": "My own engineering guides and BAU workflow skills"
+    },
+    {
+      "name": "extra-skills",
+      "source": "./plugins/extra-skills",
+      "description": "Third-party skills copied from public repos"
+    },
+    {
+      "name": "superpowers",
+      "source": "./plugins/superpowers",
+      "description": "Skills from obra/superpowers (guessed from contents)"
+    },
+    {
+      "name": "matt-pocock-skills",
+      "source": "./plugins/matt-pocock-skills",
+      "description": "Skills from Matt Pocock skills (guessed)"
+    },
+    {
+      "name": "supermatt-skills",
+      "source": "./plugins/supermatt-skills",
+      "description": "Skills from fork/variant of Matt Pocock skills (guessed)"
+    },
+    {
+      "name": "engineering-team-roles",
+      "source": "./plugins/engineering-team-roles",
+      "description": "Skills from 10x-team role pack (unknown author)"
+    },
+    {
+      "name": "backend-discipline",
+      "source": "./plugins/backend-discipline",
+      "description": "Skills from senior backend discipline pack (unknown author)"
+    },
+    {
+      "name": "sanity",
+      "source": "./plugins/sanity",
+      "description": "Skills from Sanity (guessed from contents)"
+    },
+    {
+      "name": "engineering-workflows",
+      "source": "./plugins/engineering-workflows",
+      "description": "Skills from engineering workflow pack (unknown author)"
+    },
+    {
+      "name": "data-analysis",
+      "source": "./plugins/data-analysis",
+      "description": "Skills from data analysis pack (unknown author)"
+    },
+    {
+      "name": "design",
+      "source": "./plugins/design",
+      "description": "Skills from design pack (unknown author)"
+    },
+    {
+      "name": "workflow-studio",
+      "source": "./plugins/workflow-studio",
+      "description": "Skills from full-stack workflow pack, Vue/Tabler flavoured (unknown author)"
+    },
+    {
+      "name": "productivity",
+      "source": "./plugins/productivity",
+      "description": "Skills from productivity pack (unknown author)"
+    },
+    {
+      "name": "code-review-plugin",
+      "source": "./plugins/code-review-plugin",
+      "description": "Skills from code review plugin (unknown author)"
+    },
+    {
+      "name": "security-scanner",
+      "source": "./plugins/security-scanner",
+      "description": "Skills from Claude Security menu plugin (unknown author)"
+    },
+    {
+      "name": "cv-builder",
+      "source": "./plugins/cv-builder",
+      "description": "Skills from CV Builder plugin (unknown author)"
+    },
+    {
+      "name": "ai-mentor",
+      "source": "./plugins/ai-mentor",
+      "description": "Skills from AI workflow mentor plugin (unknown author)"
+    },
+    {
+      "name": "caveman",
+      "source": "./plugins/caveman",
+      "description": "Skills from caveman (guessed JuliusBrussee/caveman)"
+    },
+    {
+      "name": "humanizer",
+      "source": "./plugins/humanizer",
+      "description": "Skills from humanizer pack"
+    },
+    {
+      "name": "modern-web-guidance",
+      "source": "./plugins/modern-web-guidance",
+      "description": "Skills from modern-web-guidance plugin"
+    },
+    {
+      "name": "datadog",
+      "source": "./plugins/datadog",
+      "description": "Skills from Datadog plugin"
+    }
+  ]
+}
